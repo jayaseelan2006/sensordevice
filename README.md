@@ -29,12 +29,85 @@ Step 7: Save and run the application.
 ```
 /*
 Program to print the avaliable sensor in android mobile devices”.
-Developed by:
-Registeration Number :
+Developed by: JAYASEELAN U
+Registeration Number : 212223220039
 */
 ```
+## MainActivy.java
+```
+package com.example.sensors;
 
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+
+    private SensorManager mgr;
+    private TextView txtList;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Initialize Sensor Manager
+        mgr = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+        // Connect TextView with XML
+        txtList = findViewById(R.id.sensorlist);
+
+        // Get all available sensors
+        List<Sensor> sensorList = mgr.getSensorList(Sensor.TYPE_ALL);
+
+        // Store sensor names
+        StringBuilder strBuilder = new StringBuilder();
+
+        for (Sensor s : sensorList) {
+            strBuilder.append(s.getName()).append("\n");
+        }
+
+        // Display sensor list
+        txtList.setVisibility(View.VISIBLE);
+        txtList.setText(strBuilder.toString());
+    }
+}
+```
+## activity_main.xml
+```
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/sensorlist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
 ## OUTPUT
+<img width="1824" height="997" alt="Screenshot 2026-05-27 080945" src="https://github.com/user-attachments/assets/1231fbff-decd-461b-8af3-65680ff6ce01" />
 
 
 
